@@ -15,9 +15,9 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0]; // J/kg
+dimensions      [0 2 -2 0 0 0 0]; 
 
-internalField   uniform 294465;   // Explicit enthalpy value for 293 K
+internalField   uniform 294465;   
 
 boundaryField
 {
@@ -39,7 +39,7 @@ boundaryField
 
     fluidZone_to_solidZone
     {
-        type            zeroGradient; // Allows the heat transfer coupling to update it cleanly
+        type            zeroGradient; 
     }
 }
 
