@@ -28,8 +28,7 @@ divSchemes
 {
     default             none;
     div(phi,U)          Gauss upwind;
-    
-    // Changed to upwind for absolute numerical bounding during startup
+  
     div(phi,h)          Gauss upwind; 
     
     div(phi,K)          Gauss limitedLinear 1;
