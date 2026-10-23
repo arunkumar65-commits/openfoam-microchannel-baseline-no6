@@ -1,0 +1,54 @@
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+
+solvers
+{
+    p
+    {
+        solver      GAMG;
+        tolerance   1e-6;
+        relTol      0;
+    }
+
+    "(U|h)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0;
+    }
+
+    e
+    {
+
+    solver          PBiCGStab;
+    preconditioner  DILU;
+    tolerance       1e-8;
+    relTol          0;
+    }
+
+}
+
+PIMPLE
+{
+    nOuterCorrectors 1;
+    nCorrectors 1;
+    nNonOrthogonalCorrectors 0;
+}
+relaxationFactors
+{
+    fields
+    {
+        p 0.3;
+    }
+
+    equations
+    {
+        U 0.7;
+        T 0.7;
+    }
+}

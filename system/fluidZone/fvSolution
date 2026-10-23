@@ -1,0 +1,84 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system/fluidZone";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Keeps the thermal updates independent of uncorrected mass conservation errors
+thermophysicalPredictor no; 
+
+solvers
+{
+    "rho.*"
+    {
+        solver          diagonal;
+    }
+
+    // Robust pressure solver configuration to handle high initial gradients
+    p_rgh
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-05;      // Relaxed to let the simulation progress swiftly
+        relTol          0.1;        // Loosened intermediate target
+        maxIter         20;         // HARD LIMIT: Solves pressure in max 20 steps
+    }
+
+    // Must be explicitly defined to prevent the final loop from hitting 1000 steps
+    p_rghFinal
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-06;
+        relTol          0;
+        maxIter         30;         // HARD LIMIT: Solves final loop in max 30 steps
+    }
+
+    "(U|h).*"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-07;
+        relTol          0.1;
+    }
+
+    "(U|h)Final"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-07;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    nOuterCorrectors 3;             // Increased to 3 to help smooth out the velocity spikes
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 1;
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p_rgh           0.5;        // Dampens pressure changes to prevent divergence
+    }
+    equations
+    {
+        U               0.5;        // Dampens velocity updates
+        h               0.7;
+    }
+}
+
+// ************************************************************************* //

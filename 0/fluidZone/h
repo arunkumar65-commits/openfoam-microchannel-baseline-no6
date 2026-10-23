@@ -1,0 +1,46 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0/fluidZone";
+    object      h;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0]; // J/kg
+
+internalField   uniform 294465;   // Explicit enthalpy value for 293 K
+
+boundaryField
+{
+    fluidInlet
+    {
+        type            fixedValue;
+        value           uniform 294465;
+    }
+
+    fluidOutlet
+    {
+        type            zeroGradient;
+    }
+
+    fluidTop
+    {
+        type            zeroGradient;
+    }
+
+    fluidZone_to_solidZone
+    {
+        type            zeroGradient; // Allows the heat transfer coupling to update it cleanly
+    }
+}
+
+// ************************************************************************* //

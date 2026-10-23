@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v13                                   |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile 
+{
+    format    ascii;
+    class     volScalarField;
+    location  "0/solidZone";
+    object     T;
+}
+
+dimensions        [0 0 0 1 0 0 0];
+
+internalField     uniform 293;
+
+boundaryField
+{
+    bottomHeatedWall
+    {
+        type           fixedGradient;
+        gradient       uniform 6756.76;
+
+
+    }
+
+    solidFront 
+    {
+        type      zeroGradient;
+    }
+
+    solidBack
+    {
+        type      zeroGradient;
+    }
+
+    leftOuterWall
+    {
+        type      zeroGradient;
+    }
+
+    rightOuterWall
+    {
+        type     zeroGradient;
+    }
+
+    solidTop
+    {
+        type     zeroGradient;
+    }
+
+    solidZone_to_fluidZone
+    {
+       type                 compressible::turbulentTemperatureCoupledBaffleMixed;
+       neighbourFieldName   T;
+       neighbourPatch       fluidZone_to_solidZone;
+       neighbourRegion      fluidZone;
+       kappaMethod          solidThermo;
+       value                uniform 293;
+    }
+
+    defaultFaces
+    {
+        type       zeroGradient;
+    }
+}

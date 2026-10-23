@@ -1,0 +1,44 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v13                                   |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile 
+{
+    format    ascii;
+    class     volVectorField;
+    location  "0/fluidZone";
+    object     U;
+}
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField 
+{
+    fluidInlet
+    {
+        type    fixedValue;
+        value   uniform (6 0 0);
+    }
+
+    fluidOutlet
+    {
+        type    zeroGradient;
+    }
+
+    fluidTop
+    {
+        type    noSlip;
+    }
+
+    fluidZone_to_solidZone
+    {
+        type    noSlip;
+    }
+}

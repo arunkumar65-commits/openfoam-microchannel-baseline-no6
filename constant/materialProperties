@@ -1,0 +1,30 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v13                                   |
+|   \\  /    A nd           |                                                 |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      materialProperties;
+}
+
+// ************************************************************************* //
+
+fluid
+{
+    solver      fluid;
+    material    water;
+}
+
+solid
+{
+    solver      solid;
+    material    silicon;
+}
+
+// ************************************************************************* //

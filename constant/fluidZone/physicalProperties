@@ -1,0 +1,87 @@
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "constant/fluidZone";
+    object      physicalProperties;
+}
+
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       polynomial;
+    thermo          hPolynomial;
+    equationOfState icoPolynomial;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight       18;
+    }
+
+    equationOfState
+    {
+       rhoCoeffs<8>
+       (
+         240.00807229463996
+         6.783061943068584
+         -0.01908944231432719
+         1.6284205710971063e-05
+         0
+         0
+         0
+         0
+      );
+    }
+    
+    thermodynamics
+    {
+        
+        CpCoeffs<8>
+        (
+            8958.9
+            -40.535
+            0.11243
+            -1.0134e-04
+            0
+            0
+            0
+            0
+        );
+
+        hf              0;
+        sf              0;
+    }
+
+    transport
+    {
+        muCoeffs<8>
+        (
+            9.61884603e-02
+            -8.26878530e-04
+            2.39809275e-06
+            -2.33697190e-09
+            0
+            0
+            0
+            0
+        );
+
+        kappaCoeffs<8>
+        (
+            -0.58166
+            0.0063556
+            -7.964e-06
+            0
+            0
+            0
+            0
+            0
+        );
+    }
+}

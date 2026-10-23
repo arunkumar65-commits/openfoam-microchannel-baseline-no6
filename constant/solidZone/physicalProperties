@@ -1,0 +1,42 @@
+FoamFile
+{
+    format      ascii;
+        class       dictionary;
+            location    "constant/solidZone";
+                object      physicalProperties;
+                }
+
+                thermoType
+                {
+                    type            heSolidThermo;
+                        mixture         pureMixture;
+                            transport       constIsoSolid;
+                                thermo          eConst;
+                                    equationOfState rhoConst;
+                                        specie          specie;
+                                            energy          sensibleInternalEnergy;
+                                            }
+
+                                            mixture
+                                            {
+                                                specie
+                                                    {
+                                                            molWeight       28.085;
+                                                                }
+
+                                                                    equationOfState
+                                                                        {
+                                                                                rho             2330;
+                                                                                    }
+
+                                                                                        transport
+                                                                                            {
+                                                                                                    kappa           148;
+                                                                                                        }
+
+                                                                                                           thermodynamics
+                                                                                                                {
+                                                                                                                        Hf              0;
+                                                                                                                                Cv              700;
+                                                                                                                                    }
+                                                                                                                                    }
