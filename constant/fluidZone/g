@@ -17,6 +17,6 @@ FoamFile
 
 dimensions      [0 1 -2 0 0 0 0];
 
-value           (0 0 0);          // Zeroes out all gravitational accelerations
+value           (0 0 0);          
 
 // ************************************************************************* //
