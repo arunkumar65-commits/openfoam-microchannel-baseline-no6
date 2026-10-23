@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// Keeps the thermal updates independent of uncorrected mass conservation errors
+
 thermophysicalPredictor no; 
 
 solvers
@@ -24,24 +24,24 @@ solvers
         solver          diagonal;
     }
 
-    // Robust pressure solver configuration to handle high initial gradients
+   
     p_rgh
     {
         solver          PCG;
         preconditioner  DIC;
-        tolerance       1e-05;      // Relaxed to let the simulation progress swiftly
-        relTol          0.1;        // Loosened intermediate target
-        maxIter         20;         // HARD LIMIT: Solves pressure in max 20 steps
+        tolerance       1e-05;      
+        relTol          0.1;        
+        maxIter         20;         
     }
 
-    // Must be explicitly defined to prevent the final loop from hitting 1000 steps
+    
     p_rghFinal
     {
         solver          PCG;
         preconditioner  DIC;
         tolerance       1e-06;
         relTol          0;
-        maxIter         30;         // HARD LIMIT: Solves final loop in max 30 steps
+        maxIter         30;         
     }
 
     "(U|h).*"
@@ -63,7 +63,7 @@ solvers
 
 PIMPLE
 {
-    nOuterCorrectors 3;             // Increased to 3 to help smooth out the velocity spikes
+    nOuterCorrectors 3;             
     nCorrectors     2;
     nNonOrthogonalCorrectors 1;
 }
@@ -72,11 +72,11 @@ relaxationFactors
 {
     fields
     {
-        p_rgh           0.5;        // Dampens pressure changes to prevent divergence
+        p_rgh           0.5;        
     }
     equations
     {
-        U               0.5;        // Dampens velocity updates
+        U               0.5;        
         h               0.7;
     }
 }
