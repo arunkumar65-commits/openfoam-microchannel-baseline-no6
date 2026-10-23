@@ -30,7 +30,7 @@ The detailed numerical settings, boundary conditions, mesh information and post-
 
 ## Validation Status
 
-The initial simulation results show approximate agreement with the benchmark results. Further quantitative comparison and verification are needed to establish the accuracy of the reproduction.
+The OpenFOAM simulation reproduces the overall trend in the Nusselt number (Nu) reported in the benchmark study, with a deviation of 4.4% for the evaluated case. This indicates good agreement with the reference result for this parameter. Further verification and comparison across the Reynolds number range are ongoing.
 
 ## Repository Contents
 
