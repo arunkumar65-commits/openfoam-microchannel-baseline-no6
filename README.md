@@ -38,6 +38,23 @@ The repository will contain the essential OpenFOAM case configuration, selected 
 
 Large generated simulation files and unnecessary intermediate results will be excluded.
 
+
+## Automation
+
+The `autocase.py` script is included to support automation of the baseline velocity study.
+
+The study consists of 13 cases using the same baseline microchannel geometry, with inlet velocity varied between cases.
+
+The automation workflow and execution instructions will be documented alongside the script, including the required OpenFOAM environment, case-generation procedure, and simulation commands.
+
+## Reproducibility
+
+- OpenFOAM version: Foundation v13
+- Computing environment used for the simulations: ANGI cluster, IIST
+- Geometry: Smooth microchannel heat sink, benchmark No. 6
+- Validation: Initial results show approximate agreement with the benchmark; further quantitative comparison is ongoing.
+
+
 ## Current Progress
 
 - [x] Create the GitHub repository
