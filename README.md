@@ -58,10 +58,13 @@ The automation workflow and execution instructions will be documented alongside 
 ## Current Progress
 
 - [x] Create the GitHub repository
-- [ ] Prepare and document the OpenFOAM case
-- [ ] Record mesh and solver settings
-- [ ] Compare Nusselt number and pressure drop with the benchmark
-- [ ] Document discrepancies and further improvements
+- [x] Upload the OpenFOAM baseline case configuration
+- [x] Add the automation script for the 13 velocity cases
+- [x] Document the benchmark reference and computational setup
+- [ ] Document mesh generation and simulation execution
+- [ ] Quantitatively compare Nusselt number and pressure drop with the benchmark
+- [ ] Investigate numerical discrepancies and improve agreement
+- [ ] Complete the validation across the Reynolds number range
 - [ ] Extend the study to offset-rib geometries
 
 ## Notes
