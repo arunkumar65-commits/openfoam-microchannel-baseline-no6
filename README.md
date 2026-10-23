@@ -41,16 +41,30 @@ Large generated simulation files and unnecessary intermediate results will be ex
 
 ## Automation
 
-The `autocase.py` script is included to support automation of the baseline velocity study.
+The baseline Reynolds-number study is automated using `autocase.py`, written in Python.
 
-The study consists of 13 cases using the same baseline microchannel geometry, with inlet velocity varied between cases.
+The script generates 13 cases for Reynolds numbers ranging from 190 to 838, using a common smooth microchannel geometry and varying the inlet velocity.
 
-The automation workflow and execution instructions will be documented alongside the script, including the required OpenFOAM environment, case-generation procedure, and simulation commands.
+### Automation procedure
+
+1. Calculate the water density and dynamic viscosity at 293 K.
+2. Calculate the inlet velocity corresponding to each Reynolds number using the hydraulic diameter.
+3. Copy the baseline case template into a separate directory for each Reynolds number.
+4. Update the fluid inlet velocity boundary condition.
+5. Execute the mesh-generation, region-separation, mesh-checking, and multi-region CHT solver commands.
+6. Stop the automation if a command fails or the inlet velocity entry cannot be located.
+
+### Scope and limitations
+
+The script automates case generation and solver execution. Post-processing, extraction of heat-transfer quantities, and quantitative comparison with the benchmark are separate tasks.
+
+The mesh-generation commands are executed for each case, using the same template and mesh settings.
+
+The initial Nusselt-number comparison shows a reported deviation of 4.4% for the evaluated case. Further quantitative validation across the Reynolds-number range is ongoing.
 
 ## Reproducibility
 
 - OpenFOAM version: Foundation v13
-- Computing environment used for the simulations: ANGI cluster, IIST
 - Geometry: Smooth microchannel heat sink, benchmark No. 6
 - Validation: Initial results show approximate agreement with the benchmark; further quantitative comparison is ongoing.
 
