@@ -56,7 +56,7 @@ for Re in Re_list:
     print(f"\nCreating {caseName}")
 
     
-    shutil.copytree("hihRevar", caseName)
+    shutil.copytree("hihRevar", caseName)     ## "hihRever" a floder that stores templete files  
 
    
 
